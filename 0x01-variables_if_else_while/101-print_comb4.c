@@ -1,32 +1,36 @@
 #include <stdio.h>
 
 /**
- * main - Entry level
+ * main - Entry Level
  *
- * Return: 0 (Successful)
+ * Return: 0 is Successful
  */
+
 int main(void)
 {
 	int a;
 	int b;
 	int c;
+	int d;
 
-	for (a = 0; a <= 7; a++)
+	a = 0;
+	while (a < 1000)
 	{
-		for (b = a + 1; b <= 8; b++)
+		b = a / 100;
+		c = (a / 10) % 10;
+		d = a % 100;
+		if (b < c && c < d)
 		{
-			for (c = b + 1; c <= 9; b++)
+			putchar(d + '0');
+			putchar(c + '0');
+			putchar(b + '0');
+			if (a < 789)
 			{
-				putchar('0' + a);
-				putchar('0' + b);
-				putchar('0' + c);
-				if (a != 7 || b != 8 || c != 9)
-				{
-					putchar(',');
-					putchar(' ');
-				}
+				putchar(',');
+				putchar(' ');
 			}
 		}
+		a++;
 	}
 	putchar('\n');
 	return (0);

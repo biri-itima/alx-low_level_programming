@@ -14,7 +14,7 @@ int main(void)
 	int b1;
 	int b2;
 
-	for (a = 0; a <= 99; a++)
+	for (a = 0; a <= 98; a++)
 	{
 		for (b = a + 1; b <= 99; b++)
 		{
@@ -29,13 +29,13 @@ int main(void)
 			putchar(b1 + '0');
 			putchar(b2 + '0');
 
-			if (a != 99 || b != 99)
-			{
-				putchar(',');
-				putchar(' ');
-			}
+			if (a == 98 && b == 99)
+				continue;
+			putchar(',');
+			putchar(' ');
 		}
 	}
+	putchar('\n');
 
 	return (0);
 }

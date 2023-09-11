@@ -1,37 +1,42 @@
 #include <stdio.h>
 
 /**
- * main - Entry Level
+ * main - Entry point
  *
- * Return: 0 is Successful
+ * Return: 0
  */
-
 int main(void)
 {
-	int a;
-	int b;
-	int c;
-	int d;
+	int a, b, c;
 
-	a = 0;
-	while (a < 1000)
+	c = 0;
+	while (c < 10)
 	{
-		b = a / 100;
-		c = (a / 10) % 10;
-		d = a % 100;
-		if (b < c && c < d)
+		b = 0;
+		while (b < 10)
 		{
-			putchar(d + '0');
-			putchar(c + '0');
-			putchar(b + '0');
-			if (a < 789)
+			a = 0;
+			while (a < 10)
 			{
-				putchar(',');
-				putchar(' ');
+				if (a != b && b != c && c < b && b < a)
+				{
+					putchar('0' + c);
+					putchar('0' + b);
+					putchar('0' + a);
+
+					if (a + b + c != 9 + 8 + 7)
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
+				a++;
 			}
+			b++;
 		}
-		a++;
+		c++;
 	}
 	putchar('\n');
 	return (0);
+
 }

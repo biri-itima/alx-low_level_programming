@@ -14,7 +14,6 @@ void print_times_table(int n)
 	{
 
 	}
-	
 	else if (n <= 15)
 	{
 		for (r = 0; r <= n; r++)

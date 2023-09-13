@@ -14,11 +14,17 @@ void times_table(void)
 		for (c = 0; c < 10; c++)
 		{
 			x = r * c;
-			if (c < 9)
-			printf("%2d, ", x);
+			if (r < 11 && c < 1)
+				printf("%d,", x);
+			if (x < 10)
+			{
+			printf("%2d", x);
+			}
 
 			else
 				printf("%2d", x);
+			if (c < 9)
+				printf(", ");
 		}
 		printf("\n");
 

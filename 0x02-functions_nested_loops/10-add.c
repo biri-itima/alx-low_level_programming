@@ -3,17 +3,13 @@
 /**
  * add - add two integars
  *
- *@int: data type
- * Return: the result c always
+ *@a: parameter to be add to b
+ *@b: parameter to be added to a
+ * Return: a + b
  */
 int add(int a, int b)
 {
 
-	int c;
-
-	c = a + b;
-
-	_putchar(c);
-	return (c);
+	return (a + b);
 }
 

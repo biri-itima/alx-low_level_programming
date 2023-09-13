@@ -28,7 +28,6 @@ void print_times_table(int n)
 			}
 			printf("\n");
 		}
-		printf("\n");
 	}
 	else if (n > 15)
 		printf("\n");

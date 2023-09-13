@@ -7,7 +7,7 @@
  */
 int main(void)
 {
-	int n = 50, i;
+	int n = 51, i;
 
 	long int f1 = 1, f2 = 2, fn;
 
@@ -19,7 +19,7 @@ int main(void)
 		fn = f1 + f2;
 		f1 = f2;
 		f2 = fn;
-		if (i < n)
+		if (i != n)
 		{
 			printf(", ");
 		}

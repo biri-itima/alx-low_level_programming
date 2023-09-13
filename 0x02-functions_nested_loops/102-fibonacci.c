@@ -9,12 +9,12 @@ int main(void)
 {
 	int n = 50, i;
 
-	long long int f1 = 1, f2 = 2, fn;
+	long int f1 = 1, f2 = 2, fn;
 
 	for (i = 3; i <= n; i++)
 	{
 		fn = f1 + f2;
-		printf("%lld, %lld, %lld", f1, f2, fn);
+		printf("%ld, %ld, %ld", f1, f2, fn);
 
 		if (i < n)
 		{

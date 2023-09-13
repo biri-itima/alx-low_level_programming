@@ -11,19 +11,20 @@ int main(void)
 
 	long int f1 = 1, f2 = 2, fn;
 
+	printf("%ld, ", f1);
+
 	for (i = 3; i <= n; i++)
 	{
+		printf("%ld", f2);
 		fn = f1 + f2;
-		printf("%ld, %ld, %ld", f1, f2, fn);
-
+		f1 = f2;
+		f2 = fn;
 		if (i < n)
 		{
 			printf(", ");
 		}
 		else
 			printf("\n");
-		f1 = f2;
-		f2 = fn;
 	}
 	return (0);
 }

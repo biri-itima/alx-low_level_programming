@@ -19,8 +19,7 @@ int main(void)
 			b += a;
 		}
 	}
-			printf("%d", b);
-			printf("\n");
+	printf("%d", b);
 	printf("\n");
 	return (0);
 }

@@ -1,8 +1,7 @@
 #include "main.h"
 
 /**
- *
- * _strncpy: copy string
+ * _strncpy - copy string
  * @dest: destination
  * @src: Source
  * @n: parameter 3
@@ -20,4 +19,4 @@ char *_strncpy(char *dest, char *src, int n)
 		i++;
 	}
 	return (dest);
-}	
+}

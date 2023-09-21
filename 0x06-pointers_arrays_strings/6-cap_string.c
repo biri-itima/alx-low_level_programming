@@ -28,9 +28,10 @@ char *cap_string(char *str)
 			if (str[i] == sep[j])
 			{
 				is_sep = 1;
+				break;
 			}
 		}
-		if (is_sep)
+		if (is_sep || str[i] == ' ' || str[i] == sep[j])
 		{
 			i++;
 			if (str[i] >= 'a' && str[i] <= 'z')
@@ -38,7 +39,7 @@ char *cap_string(char *str)
 				str[i] = str[i] - ('a' - 'A');
 			}
 		}
-		else
+		else if (str[i] == '.' || str[i] == '!')
 		{
 			if (str[i] >= 'A' && str[i] <= 'Z')
 			{

@@ -24,6 +24,14 @@ int is_palindrome_rec(char *s, int str, int end)
 	return (is_palindrome_rec(s, str + 1, end - 1));
 }
 
+/**
+ * is_palindrome - check if it is a palindrome
+ *
+ * @s: parameter
+ *
+ * Return: 1
+ */
+
 int is_palindrome(char *s)
 {
 	int l = strlen(s);

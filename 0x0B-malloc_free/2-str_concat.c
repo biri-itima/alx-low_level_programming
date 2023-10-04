@@ -14,18 +14,16 @@ char *str_concat(char *s1, char *s2)
 	size_t total_len;
 	char *cat_arr;
 
-	if (s1 != NULL)
+	if (s1 == NULL)
 	{
-	len_s1 = strlen(s1);
-	}
-	else
 		s1 = " ";
-	if (s2 != NULL)
-	{
-	len_s2 = strlen(s2);
 	}
-	else
+	if (s2 == NULL)
+	{
 		s2 = " ";
+	}
+	len_s1 = strlen(s1);
+	len_s2 = strlen(s2);
 
 	total_len = len_s1 + len_s2 + 1;
 

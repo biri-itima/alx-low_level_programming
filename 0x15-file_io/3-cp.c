@@ -1,5 +1,5 @@
 #include "main.h"
-#define BUFFER_SIZE 1024
+void check_IO_stat(int stat, int f, char *filename, char mode);
 /**
  * main - entry point for cp
  * @argc: argument count
@@ -8,44 +8,56 @@
  */
 int main(int argc, char *argv[])
 {
-	int f_from, f_to;
-	char buffer[BUFFER_SIZE];
-	ssize_t rd, wrt;
-	const char *file_from = argv[1], *file_to = argv[2];
+	int src, dest, n_read = 1024, wr, close_src, close_dest;
+	unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
+	char buffer[1024];
 
 	if (argc != 3)
 	{
-		error_message(97, "Usage: cp file_from file_to\n");
+		dprintf(STDERR_FILENO, "%s", "Usage: cp file_from file_to\n");
+		exit(97);
 	}
-	f_from = open(file_from, O_RDONLY);
-	if (f_from == -1)
+	src = open(argv[1], O_RDONLY);
+	check_IO_stat(src, -1, argv[1], 'O');
+	dest = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
+	check_IO_stat(dest, -1, argv[2], 'W');
+	while (n_read == 1024)
 	{
-		error_message(98, "Error: Can't read from%s\n", f_from);
+		n_read = read(src, buffer, sizeof(buffer));
+		if (n_read == -1)
+			check_IO_stat(-1, -1, argv[1], 'O');
+		wr = write(dest, buffer, n_read);
+		if (wr == -1)
+			check_IO_stat(-1, -1, argv[2], 'W');
 	}
-	f_to = open(file_to, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (f_to == -1)
-	{
-		error_message(99, "Error: Can't write to %s\n", file_to);
-	}
-	while ((rd = read(f_from, buffer, BUFFER_SIZE)) > 0)
-	{
-		wrt = write(f_to, buffer, rd);
-		if (wrt == -1)
-		{
-			error_message(99, "Error: Can't write to %s\n", file_to);
-		}
-	}
-	if (rd == -1)
-	{
-		error_message(98, "Error: Can't read from %s\n", file_from);
-	}
-	if (close(f_from) == -1)
-	{
-		error_message(100, "Error: Can't close fd %d\n", f_from);
-	}
-	if (close(f_to) == -1)
-	{
-		error_message(100, "Error: Can't close fd %d\n", f_to);
-	}
+	close_src = close(src);
+	check_IO_stat(close_src, src, NULL, 'C');
+	close_dest = close(dest);
+	check_IO_stat(close_dest, dest, NULL, 'C');
 	return (0);
+}
+/**
+ * check_IO_stat - checks file
+ * @stat: file descriptor
+ * @filename: name of file
+ * @mode: close or open
+ * @f: file descriptor
+ */
+void check_IO_stat(int stat, int f, char *filename, char mode)
+{
+	if (mode == 'C' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't close f %d\n", f);
+		exit(100);
+	}
+	else if (mode == 'O' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
+	exit(98);
+	}
+	else if (mode == 'W' && stat == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
+		exit(99);
+	}
 }

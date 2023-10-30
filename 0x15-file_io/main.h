@@ -7,8 +7,11 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <sys/types.h>
+#include <stdarg.h>
+#include <errno.h>
 #include <sys/stat.h>
 
+void error_message(int code, const char *format, ...);
 int _putchar(char c);
 ssize_t read_textfile(const char *filename, size_t letters);
 int create_file(const char *filename, char *text_content);
